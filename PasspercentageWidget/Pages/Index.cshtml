@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Test Result Statistics";
+}
+
+<h1>Select Test Plan and Suite</h1>
+
+<form method="post">
+    <div>
+        <label for="PlanId">Test Plan:</label>
+        <select asp-for="PlanId" asp-items="Model.PlanOptions" onchange="this.form.submit()">
+            <option value="">-- Select a Plan --</option>
+        </select>
+    </div>
+
+    @if (Model.SuiteOptions.Count > 0)
+    {
+        <div>
+            <label for="SuiteId">Test Suite:</label>
+            <select asp-for="SuiteId" asp-items="Model.SuiteOptions">
+                <option value="">-- Select a Suite --</option>
+            </select>
+        </div>
+
+        <div>
+            <button type="submit">Get Pass Percentage</button>
+        </div>
+    }
+</form>
+
+@if (Model.Total > 0)
+{
+    <h2>Results</h2>
+    <p>Passed: @Model.Passed</p>
+    <p>Failed: @Model.Failed</p>
+    <p>Total: @Model.Total</p>
+    <p><strong>Pass Percentage:</strong> @Model.PassPercentage%</p>
+}
