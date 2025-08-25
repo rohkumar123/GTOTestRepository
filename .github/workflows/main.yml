@@ -1,0 +1,23 @@
+name: Access GTOTestRepository via SSH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  access-repo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repo
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Clone GTOTestRepository
+        run: |
+          git clone git@github.com:your-org/GTOTestRepository.git
