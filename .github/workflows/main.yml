@@ -20,4 +20,4 @@ jobs:
 
       - name: Clone GTOTestRepository
         run: |
-          git clone git@github.com:GTOTestRepository.git
+          git clone git@github.com:rohkumar123/GTOTestRepository.git
